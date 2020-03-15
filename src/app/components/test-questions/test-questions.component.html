@@ -1,0 +1,24 @@
+<form>
+<div *ngFor="let question of questions">
+  <div class="card">
+    <div class="card-header">
+      {{question.content}}
+
+      <div class="card-body">
+        <div *ngFor="let answer of question.answers; let idx = index" class="input-group mb-3">
+          <div  class="input-group-prepend">
+            <div class="input-group-text">
+              <input type="radio" [value]="answer.id" aria-label="Checkbox for following text input" [checked]="idx === 0" (change)="onSelectRadioChange(question, answer)" name="{{question.id}}">
+            </div>
+            <span class="input-group-text">{{answer.content}}</span>
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+  </div>
+</div>
+  <button type="submit" class="btn btn-outline-secondary" (click)="submitAnswers()" >Submit</button>
+</form>

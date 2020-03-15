@@ -1,0 +1,47 @@
+<div style="background: lavender; height:250px"  class="jumbotron">
+  <h2>{{course.name}}</h2>
+  <h3>Author:{{currentUser.name}}</h3>
+  <hr class="my-4">
+  <div *ngIf="isUserAlreadyJoined; else elseBlock">
+    <a class="btn btn-outline-secondary " (click)="onGoToTheCourseClick()" role="button">Go to the course</a>
+  </div>
+  <ng-template #elseBlock>
+    <a class="btn btn-outline-secondary"  (click)="onJoinToCourseClick()"  role="button">Join</a>
+  </ng-template>
+</div>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" active id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Description</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" id="content-tab" data-toggle="tab" href="#content" role="tab" aria-controls="content" aria-selected="true">Content</a>
+  </li>
+<!--  <li class="nav-item">-->
+<!--    <a class="nav-link" id="comment-tab" data-toggle="tab" href="#comment" role="tab" aria-controls="comment" aria-selected="true">Comments</a>-->
+<!--  </li>-->
+</ul>
+
+<div class="row">
+<!--  <div class="col-md-4"></div>-->
+  <div class="col-md-8">
+    <div class="tab-content description-tab" id="myTabContent">
+      <div class="tab-pane fade show active" id="description" role="tabpanel" aria-labelledby="description-tab">
+        <p></p>
+        <div class="row">
+          <div class="col-md-6">
+            <p>{{course.description}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="content" role="tabpanel" aria-labelledby="content-tab">
+        <div class="row">
+          <div class="col-md-8">
+            <ul class="list-group">
+              <li class="list-group-item ">This is a info list group item</li>
+          </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

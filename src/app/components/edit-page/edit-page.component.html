@@ -1,0 +1,32 @@
+<div class="card">
+  <form>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-9">
+        <input type="text" class="input-group" [(ngModel)]="this.currentPage.name" placeholder="Page name" name="name">
+        <label *ngIf="!currentPage.id">Add after
+          <select [(ngModel)]="numAfterToAdd"  class="form-control form-control-sm" name="select">
+            <option *ngFor="let page of pages" [ngValue]="page.number">{{page.name}}</option>
+          </select>
+        </label>
+      </div>
+      <div class="col-md-3">
+        <div class="d-flex flex-row-reverse">
+<!--          <a class="btn btn-primary btn-sm" role="button" (click)="onBaskToLessonsClick()">Back to lessons</a>-->
+<!--          <a class="btn btn-success btn-sm" role="button" (click)="onAddPageClick()">Add page</a>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+
+          <textarea class="form-control" [(ngModel)]="this.currentPage.content" placeholder="Page content" rows="8" name="content"></textarea>
+
+    </blockquote>
+    <button type="submit" class="btn btn-outline-secondary" *ngIf="!page_id" (click)="createPage()" >Create page</button>
+    <button type="submit" class="btn btn-outline-secondary" *ngIf="page_id" (click)="updatePage()">Save changes</button>
+  </div>
+</form>
+</div>
+

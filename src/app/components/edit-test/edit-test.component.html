@@ -1,0 +1,70 @@
+<div *ngIf="!flag">
+  <form [formGroup]="survey" novalidate>
+    <div formArrayName="sections">
+      <div class="section-container" *ngFor="let section of getSections(survey); let i = index">
+        <div class="ui raised segments" [formGroupName]="i">
+          <h4 class="ui header">Edit final test</h4>
+          <div class="question-container" formArrayName="questions">
+            <div [formGroupName]="j" *ngFor="let question of getQuestions(section); let j = index">
+              <div class="card">
+                <div class="card-header">
+                  <div class="card-body">
+                    {{j+1}}. Question
+                    <input type="text" class="form-control" placeholder="Input question"
+                           formControlName="questionTitle">
+                    <p></p>
+                    <a type="button" class="btn btn-outline-secondary btn-sm" (click)="add(i,j)">Add Option</a>
+                    <div formArrayName="options">
+                      <div [formGroupName]="k" *ngFor="let option of getOptions(question); let k=index">
+                        <input type="text" class="form-control" placeholder="Input answer"
+                               formControlName="optionTitle">
+                        <a type="button" class="btn btn-outline-secondary btn-sm" *ngIf="getOptions(question).length > 2" (click)="removeOption(i,j,k)">Remove answer</a>
+                      </div>
+                    </div>
+                    <br>
+                    <a type="button" class="btn btn-outline-secondary btn-sm" (click)="addQuestion(i)">Add Question...</a>
+                    <a type="button" class="btn btn-outline-secondary btn-sm" *ngIf="getQuestions(section).length > 1" (click)="removeQuestion(i, j)">Remove Question</a>
+                  </div>
+                  <br>
+                </div>
+              </div>
+              <br>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="btn btn-outline-secondary" (click)="onSubmit(survey)">Continue</button>
+    </div>
+  </form>
+</div>
+<br>
+<p>
+</p>
+
+
+<div *ngIf="flag">
+  <form>
+    <div *ngFor="let question of questions">
+      <div class="card">
+        <div class="card-header">
+          {{question.content}}
+
+          <div class="card-body">
+            <div *ngFor="let answer of question.answers; let idx = index" class="input-group mb-3">
+              <div  class="input-group-prepend">
+                <div class="input-group-text">
+                  <input type="radio" [value]="answer.id" aria-label="Checkbox for following text input" [checked]="idx === 0" (change)="onSelectRadioChange(question, answer)" name="{{question.id}}">
+                </div>
+                <span class="input-group-text">{{answer.content}}</span>
+              </div>
+            </div>
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-outline-secondary" (click)="onSaveTestClick()" >Save test</button>
+  </form>
+</div>

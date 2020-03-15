@@ -1,0 +1,29 @@
+<!--<div class="d-flex justify-content-center w-100">-->
+  <div class="col-md-8">
+  <h2>Edit lesson</h2>
+  <form>
+    <input type="hidden" [(ngModel)]="course_id" name="course_id">
+    <input type="hidden" [(ngModel)]="lesson.id" name="id">
+<!--    <div class="form-group">-->
+<!--      <label for="number">Number</label>-->
+<!--      <input [(ngModel)]="lesson.number" name="number"  class="form-control" id="number">-->
+<!--    </div>-->
+    <label *ngIf="!lesson.id">Add after
+      <select [(ngModel)]="numAfterToAdd"  class="form-control form-control-sm" name="select">
+        <option *ngFor="let les of lessons" [ngValue]="les.number">{{les.name}}</option>
+      </select>
+    </label>
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input [(ngModel)]="lesson.name" name="name"  class="form-control" id="name">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input [(ngModel)]="lesson.description"  name="description" class="form-control" id="description">
+    </div>
+    <button type="submit" class="btn btn-outline-secondary" *ngIf="!lesson.id" (click)="createLesson()" >Create</button>
+    <button type="submit" class="btn btn-outline-secondary" *ngIf="lesson.id" (click)="updateLesson()" >Save changes</button>
+  </form>
+  </div>
+<!--</div>-->
+

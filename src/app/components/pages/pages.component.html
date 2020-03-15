@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    <div class="row">
+    <div class="col-md-9">
+      {{currentPage.name}}
+    </div>
+
+    <div class="col-md-3" *ngIf="isAuthor; else elseBlock">
+      <div class="d-flex flex-row-reverse">
+        <a class="btn btn-outline-secondary btn-sm" role="button" (click)="onBaskToLessonsClick()">Back to lessons</a>
+        <a class="btn btn-outline-secondary btn-sm" role="button" (click)="onAddPageClick()">Add page</a>
+        <a class="btn btn-outline-secondary btn-sm" role="button" (click)="onEditPageClick(currentPage.id)">Edit page</a>
+        <button type="button" class="btn btn-outline-secondary btn-sm " (click)="onDeleteClick(currentPage.id)">Delete page</button>
+      </div>
+    </div>
+    </div>
+    <ng-template #elseBlock>
+    <div class="col-md-12" >
+      <div class="d-flex flex-row-reverse">
+        <a class="btn btn-outline-secondary btn-sm" role="button" (click)="onBaskToLessonsClick()">Back to lessons</a>
+      </div>
+    </div>
+      </ng-template>
+  </div>
+
+<div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>{{currentPage.content}}</p>
+    </blockquote>
+  </div>
+</div>
+<nav aria-label="Page navigation example">
+  <ul class="pagination">
+    <li class="page-item" *ngIf="showPreviousButton"><a class="page-link" (click)="onPreviousPageClick()" >Previous</a></li>
+    <li class="page-item" *ngIf="showNextButton"><a class="page-link" (click)="onNextPageClick()">Next</a></li>
+  </ul>
+</nav>
